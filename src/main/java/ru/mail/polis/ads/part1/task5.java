@@ -1,104 +1,70 @@
 package ru.mail.polis.ads.part1;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.LinkedList;
 
 public class task5 {
-    private static class node {
-        node next;
-        node last;
-        Integer element;
 
-        node(node prev, node sled, Integer newVal) {
-            this.next = sled;
-            this.last = prev;
-            this.element = newVal;
-        }
-
-        void setNext(node newVal) {
-            this.next = newVal;
-        }
-
-        Integer getElement() {
-            return element;
-        }
-
-        node getPrev() {
-            return last;
-        }
-    }
 
     private static class myQueue {
-        node head;
-        node tail;
-        Integer queueSize = 0;
+        ArrayList<Integer> myList = new ArrayList<>();
 
         void push(Integer newInt) {
-            if (queueSize == 0) {
-                node n = new node(null, null, newInt);
-                tail = n;
-                head = n;
-            } else {
-                node n = new node(null, tail, newInt);
-                tail.setNext(n);
-                tail = n;
-            }
-            queueSize++;
+            myList.add(0, newInt);
         }
 
         Integer pop() {
-            Integer res = head.getElement();
-            head = head.getPrev();
-            queueSize--;
+            Integer res = this.front();
+            myList.remove(myList.size() - 1);
             return res;
         }
 
         Integer front() {
-            return head.getElement();
+            return myList.get(myList.size() - 1);
         }
 
         Integer size() {
-            return queueSize;
+            return myList.size();
         }
 
         void clear() {
-            head = null;
-            tail = null;
-            queueSize = 0;
+            myList.clear();
         }
     }
 
     private static void solve(final FastScanner in, final PrintWriter out) {
-        myQueue newStack = new myQueue();
+        myQueue newQueue = new myQueue();
         while (true) {
             String nextLine = in.next();
             switch (nextLine) {
                 case "front":
-                    if (newStack.size() == 0) {
+                    if (newQueue.size() == 0) {
                         out.println("error");
                         break;
                     }
-                    out.println(newStack.front());
+                    out.println(newQueue.front());
                     break;
                 case "size":
-                    out.println(newStack.size());
+                    out.println(newQueue.size());
                     break;
                 case "pop":
-                    if (newStack.size() == 0) {
+                    /*if (newQueue.size() == 0) {
                         out.println("error");
                         break;
-                    }
-                    out.println(newStack.pop());
+                    }*/
+                    out.println(newQueue.pop());
                     break;
                 case "clear":
-                    newStack.clear();
+                    newQueue.clear();
                     out.println("ok");
                     break;
                 case "exit":
                     out.println("bye");
                     return;
                 default:
-                    newStack.push(in.nextInt());
+                    newQueue.push(in.nextInt());
                     out.println("ok");
                     break;
             }

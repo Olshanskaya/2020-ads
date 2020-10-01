@@ -6,7 +6,7 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class task2 {
-    public static void str_str(String first) {
+    public static void str_str(String first, final PrintWriter out) {
         Stack<String> stack_first = new Stack<>();
         for (int i = 0; i < first.length(); i++) {
             char next_char = first.charAt(i);
@@ -62,15 +62,15 @@ public class task2 {
                 rez = next_vir + rez;
             }
         }
-        System.out.print(rez);
+        out.print(rez);
     }
 
     private static void solve(final FastScanner in, final PrintWriter out) {
         int i = in.nextInt();
         for (int j = 0; j < i; j++) {
             String str = in.nextLine();
-            str_str(str);
-            System.out.print("\n");
+            str_str(str, out);
+            out.print("\n");
         }
     }
 

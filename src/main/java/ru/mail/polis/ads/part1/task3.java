@@ -14,15 +14,15 @@ public class task3 {
             else
                 flag--;
             if (flag < 0) {
-                System.out.print("NO");
+                out.print("NO");
                 return;
             }
         }
         if (flag != 0) {
-            System.out.print("NO");
+            out.print("NO");
             return;
         }
-        System.out.print("YES");
+        out.print("YES");
     }
 
     private static class FastScanner {

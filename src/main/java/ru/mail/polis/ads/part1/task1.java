@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 public class task1 {
     private static void solve(final FastScanner in, final PrintWriter out) {
         int i = in.nextInt();
-        System.out.printf("%d %d\n", i / 10, i % 10);
+        out.printf("%d %d\n", i / 10, i % 10);
     }
 
     private static class FastScanner {

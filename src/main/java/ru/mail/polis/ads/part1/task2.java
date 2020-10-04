@@ -104,7 +104,7 @@ public class task2 {
 
     public static void main(final String[] arg) {
         final FastScanner in = new FastScanner(System.in);
-        try (PrintWriter out = new PrintWriter(System.out)) {
+        try (PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out))) {
             solve(in, out);
         }
     }

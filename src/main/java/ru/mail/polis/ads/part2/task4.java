@@ -3,6 +3,7 @@ package ru.mail.polis.ads.part2;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Arrays;
+import java.math.BigInteger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,32 +14,14 @@ import java.io.PrintWriter;
 
 public class task4 {
 
-    private static int partition(ArrayList<Integer> arr, int l, int r) {
-        int x = arr.indexOf(r), i = l;
-        for (int j = l; j <= r - 1; j++) {
-            if (arr.indexOf(j) <= x) {
-                // Swapping arr[i] and arr[j]
-                int temp = arr.indexOf(i);
-                arr.add(i, arr.indexOf(j));
-                arr.add(j, temp);
-                i++;
-            }
-        }
-        // Swapping arr[i] and arr[r]
-        int temp = arr.indexOf(i);
-        arr.add(i, arr.indexOf(r));
-        arr.add(r, temp);
-        //arr[r] = temp;
-        return i;
-    }
-
-    private static int findOrderStatistic(ArrayList<Integer> array, int k, int size) {
+    public static BigInteger findElement(BigInteger[] arr, int k, int size) {
         int left = 0, right = size;
         while (true) {
-            int mid = partition(array, left, right);
+            int mid = partition(arr, left, right);
             if (mid == k) {
-                return array.indexOf(mid);
-            } else if (k < mid) {
+                return arr[mid];
+            }
+            if (k < mid) {
                 right = mid;
             } else {
                 left = mid + 1;
@@ -46,23 +29,38 @@ public class task4 {
         }
     }
 
+    private static int partition(BigInteger[] arr, int left, int right) {
+        int j = left;
+        BigInteger x = arr[left];
+        for (int i = left + 1; i < right; i++) {
+            if (arr[i].compareTo(x) > 0) {
+                j++;
+                BigInteger temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+        }
+        BigInteger temp = arr[j];
+        arr[j] = arr[left];
+        arr[left] = temp;
+        return j;
+    }
+
 
     private static void solve(final FastScanner in, final PrintWriter out) throws IOException {
 
-        int findEl = in.nextInt();
-        ArrayList<Integer> mas = new ArrayList<Integer>();
+        int findEl = in.nextInt() - 1;
+        ArrayList<BigInteger> mas = new ArrayList<BigInteger>();
         int size = 0;
         String nextLine = in.reader.readLine();
         ArrayList<String> inputList = new ArrayList<String>(Arrays.asList(nextLine.split(" ")));
         for (String item : inputList) {
-            mas.add(Integer.valueOf(item));
+            BigInteger temp = new BigInteger(item);
+            mas.add(temp);
             size += 1;
         }
-
-        int orderStatistic = findOrderStatistic(mas, findEl, size);
-
-        out.println(mas.indexOf(orderStatistic));
-
+        BigInteger[] arr = mas.toArray(new BigInteger[0]);
+        out.println(findElement(arr, findEl, size));
     }
 
     private static class FastScanner {
@@ -87,8 +85,6 @@ public class task4 {
         int nextInt() {
             return Integer.parseInt(next());
         }
-
-
     }
 
     public static void main(final String[] arg) {

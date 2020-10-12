@@ -1,13 +1,14 @@
 package ru.mail.polis.ads.part2;
 
-import java.io.*;
+
 import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.Comparator;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 public class task2 {
 

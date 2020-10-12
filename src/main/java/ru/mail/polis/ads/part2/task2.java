@@ -20,20 +20,15 @@ public class task2 {
         }
         Arrays.sort(mas, new Comparator<Integer>() {
             public int compare(Integer o1, Integer o2) {
-                Integer q1 = 0;
-                Integer q2 = 0;
-                if (o1 < 10) {
-                    q1 = o1 * 10;
+
+                Integer q1 = o1 % 10;
+                Integer q2 = o2 % 10;
+                if (q1.equals(q2)) {
+                    q1 = o1 / 10;
+                    q2 = o2 / 10;
+                    return q1.compareTo(q2);
                 }
-                if (o1 > 10 && o1 < 100) {
-                    q1 = o1 / 10 + 10 * (o1 % 10);
-                }
-                if (o2 < 10) {
-                    q2 = o2 * 10;
-                }
-                if (o2 > 10 && o2 < 100) {
-                    q2 = o2 / 10 + 10 * (o2 % 10);
-                }
+
                 return q1.compareTo(q2);
             }
         });

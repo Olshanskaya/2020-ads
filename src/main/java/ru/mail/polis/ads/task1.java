@@ -14,21 +14,16 @@ public final class task1 {
 
 
     private static int isItHeap(long[] mas, int n, final PrintWriter out) {
-        for (int i = 1; i <= n / 2 + 1; i++) {
-            if (2 * i < n) {
-                if (mas[i] > mas[2 * i]) {
-                    return 0;
-                }
+        for (int i = 1; 2 * i <= n; i++) {
+            if (mas[i] > mas[2 * i]) {
+                return 0;
             }
-            if (2 * i + 1 < n) {
-                if (mas[i] > mas[2 * i] + 1) {
-                    return 0;
-                }
+            if (mas[i] > mas[2 * i] + 1) {
+                return 0;
             }
 
         }
         return 1;
-
     }
 
 
@@ -37,7 +32,7 @@ public final class task1 {
         long[] mas = new long[n + 1];
         mas[0] = 0;
         for (int i = 1; i <= n; i++) {
-            long nextEl = Long.valueOf(in.next()).longValue();
+            long nextEl = Long.parseLong(in.next());
             mas[i] = nextEl;
         }
         int rez = isItHeap(mas, n, out);
@@ -80,3 +75,4 @@ public final class task1 {
         }
     }
 }
+

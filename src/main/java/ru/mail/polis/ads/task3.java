@@ -1,24 +1,21 @@
 package ru.mail.polis.ads;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
-/**
- * Problem solution template.
- */
-public final class task2 {
-
-    public static class Heap {
+public class task3 {
+    /*public static class MAxHeap {
         private int[] heap;
         private int size;
         private int maxsize;
 
-        public Heap(int maxsize) {
+        public MAxHeap(int maxsize) {
             this.maxsize = maxsize;
             this.size = 0;
             heap = new int[this.maxsize + 1];
@@ -62,22 +59,59 @@ public final class task2 {
             sink(1);
             return max;
         }
-    }
+    }*/
 
 
-    private static void solve(final FastScanner in, final PrintWriter out) {
-        Heap my_heap = new Heap(100000);
-        int n = in.nextInt();
-        for (int i = 0; i < n; i++) {
-            int next_command = in.nextInt();
-            if (next_command == 1) {
-                out.println(my_heap.delMax());
-            } else {
-                int next_el = in.nextInt();
-                my_heap.insert(next_el);
+    /*private static void solve(final task3.FastScanner in, final PrintWriter out) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return -Integer.compare(o1, o2);
             }
+        });
+
+        Integer mediana = -1;
+
+        while (true) {
+
+            String next = in.next();
+            int nextEl = Integer.parseInt(next);
+            if (nextEl > mediana) {
+                if(minHeap.size() <= maxHeap.size()) {
+                    minHeap.add(nextEl);
+                } else {
+                    Integer el = minHeap.peek();
+                    minHeap.remove();
+                    minHeap.add(nextEl);
+                    maxHeap.add(el);
+                }
+
+            } else {
+                if(maxHeap.size() < minHeap.size()) {
+                    minHeap.add(nextEl);
+                } else {
+                    Integer el = maxHeap.peek();
+                    maxHeap.remove();
+                    maxHeap.add(nextEl);
+                    minHeap.add(el);
+                }
+            }
+            if (maxHeap.size() == minHeap.size()) {
+                Integer maxFromMinHEap = maxHeap.peek();
+                Integer minFromMaxHeap = minHeap.peek();
+                mediana = (maxFromMinHEap + minFromMaxHeap) / 2;
+            } else {
+                if (maxHeap.size() > minHeap.size()) {
+                    mediana = maxHeap.peek();
+                } else {
+                    mediana = minHeap.peek();
+                }
+            }
+            out.println(mediana);
         }
-    }
+    }*/
+
 
     private static class FastScanner {
         private final BufferedReader reader;
@@ -98,6 +132,7 @@ public final class task2 {
             return tokenizer.nextToken();
         }
 
+
         int nextInt() {
             return Integer.parseInt(next());
         }
@@ -106,8 +141,11 @@ public final class task2 {
     public static void main(final String[] arg) {
         final FastScanner in = new FastScanner(System.in);
         try (PrintWriter out = new PrintWriter(System.out)) {
-            solve(in, out);
+            int n = in.nextInt();
+            out.println(in.nextInt());
+            //solve(in, out);
+        } catch (Exception ex) {
+
         }
     }
 }
-

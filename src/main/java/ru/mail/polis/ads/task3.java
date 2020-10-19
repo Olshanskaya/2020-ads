@@ -9,60 +9,11 @@ import java.util.StringTokenizer;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
+
 public class task3 {
-    /*public static class MAxHeap {
-        private int[] heap;
-        private int size;
-        private int maxsize;
 
-        public MAxHeap(int maxsize) {
-            this.maxsize = maxsize;
-            this.size = 0;
-            heap = new int[this.maxsize + 1];
-            heap[0] = Integer.MAX_VALUE;
-        }
+    private static void solve(final FastScanner in, final PrintWriter out) throws IOException {
 
-        void swap(int i, int j) {
-            int tmp = heap[i];
-            heap[i] = heap[j];
-            heap[j] = tmp;
-        }
-
-        void sink(int k) {
-            while (2 * k <= size) {
-                int j = 2 * k;
-                if (j < size && heap[j] < heap[j + 1]) {
-                    j++;
-                }
-                if (heap[k] >= heap[j])
-                    break;
-                swap(k, j);
-                k = j;
-            }
-        }
-
-        void swim(int k) {
-            while (k > 1 && heap[k] > heap[k / 2]) {
-                swap(k, k / 2);
-                k = k / 2;
-            }
-        }
-
-        void insert(int v) {
-            heap[++size] = v;
-            swim(size);
-        }
-
-        int delMax() {
-            int max = heap[1];
-            swap(1, size--);
-            sink(1);
-            return max;
-        }
-    }*/
-
-
-    /*private static void solve(final task3.FastScanner in, final PrintWriter out) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>() {
             @Override
@@ -70,47 +21,35 @@ public class task3 {
                 return -Integer.compare(o1, o2);
             }
         });
+        String next;
+        int size = 1;
+        int mediana = -1;
 
-        Integer mediana = -1;
 
-        while (true) {
-
-            String next = in.next();
-            int nextEl = Integer.parseInt(next);
-            if (nextEl > mediana) {
-                if(minHeap.size() <= maxHeap.size()) {
-                    minHeap.add(nextEl);
+        while ((next = in.reader.readLine()) != null) {
+            int nextInt = Integer.parseInt(next);
+            if (size % 2 != 0) {
+                if (nextInt > mediana) {
+                    minHeap.add(nextInt);
+                    mediana = minHeap.poll();
                 } else {
-                    Integer el = minHeap.peek();
-                    minHeap.remove();
-                    minHeap.add(nextEl);
-                    maxHeap.add(el);
+                    maxHeap.add(nextInt);
+                    mediana = maxHeap.poll();
                 }
-
             } else {
-                if(maxHeap.size() < minHeap.size()) {
-                    minHeap.add(nextEl);
+                if (nextInt > mediana) {
+                    minHeap.add(nextInt);
+                    maxHeap.add(mediana);
                 } else {
-                    Integer el = maxHeap.peek();
-                    maxHeap.remove();
-                    maxHeap.add(nextEl);
-                    minHeap.add(el);
+                    maxHeap.add(nextInt);
+                    minHeap.add(mediana);
                 }
+                mediana = (minHeap.peek() + maxHeap.peek()) / 2;
             }
-            if (maxHeap.size() == minHeap.size()) {
-                Integer maxFromMinHEap = maxHeap.peek();
-                Integer minFromMaxHeap = minHeap.peek();
-                mediana = (maxFromMinHEap + minFromMaxHeap) / 2;
-            } else {
-                if (maxHeap.size() > minHeap.size()) {
-                    mediana = maxHeap.peek();
-                } else {
-                    mediana = minHeap.peek();
-                }
-            }
-            out.println(mediana);
+            size++;
+            out.write(mediana + "\n");
         }
-    }*/
+    }
 
 
     private static class FastScanner {
@@ -139,13 +78,13 @@ public class task3 {
     }
 
     public static void main(final String[] arg) {
+
         final FastScanner in = new FastScanner(System.in);
         try (PrintWriter out = new PrintWriter(System.out)) {
-            int n = in.nextInt();
-            out.println(in.nextInt());
-            //solve(in, out);
-        } catch (Exception ex) {
-
+            solve(in, out);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
+

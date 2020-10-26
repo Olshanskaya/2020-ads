@@ -11,26 +11,12 @@ import java.lang.Math.*;
 /**
  * Problem solution template.
  */
-public final class task3 {
+public final class task4 {
 
 
     private static void solve(final FastScanner in, final PrintWriter out) {
-        int w = in.nextInt();
-        int h = in.nextInt();
-        int n = in.nextInt();
-        long left = Math.max(h, w);
-        long right = Math.max(h, w) * n;
-        long count;
-        while (left < right) {
-            long ans = (left + right) / 2;
-            count = (ans / h) * (ans / w);
-            if (count >= n) {
-                right = count;
-            } else {
-                left = count + 1;
-            }
-        }
-        out.println(left);
+        String shablon = in.next();
+        String orig_str = in.next();
     }
 
     private static class FastScanner {

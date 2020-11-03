@@ -6,61 +6,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
+import java.lang.Math.*;
 
-/**
- * Problem solution template.
- */
-public final class task1 {
-
-    private static boolean doNext(int[] mas, int n) {
-        int j = n - 2;
-        while (j != -1 && mas[j] >= mas[j + 1]) {
-            j--;
-        }
-        if (j == -1) {
-            return false;
-        }
-        int k = n - 1;
-        while (mas[j] >= mas[k]) {
-            k--;
-        }
-        int tmp = mas[j];
-        mas[j] = mas[k];
-        mas[k] = tmp;
-
-        int left = j + 1;
-        int right = n - 1;
-        while (left < right) {
-            tmp = mas[left];
-            mas[left] = mas[right];
-            mas[right] = tmp;
-            left++;
-            right--;
-        }
-
-        return true;
-    }
-
-
+public class task3968 {
     private static void solve(final FastScanner in, final PrintWriter out) {
-        int n = in.nextInt();
-        int[] mas = new int[n];
-        for (int i = 0; i < n; i++) {
-            mas[i] = i + 1;
-        }
-
-        for (int i = 0; i < n; i++) {
-            out.print(mas[i] + " ");
-        }
-        out.println();
-
-        while (doNext(mas, n)) {
-            for (int i = 0; i < n; i++) {
-                out.print(mas[i] + " ");
+        double c = Double.parseDouble(in.next());
+        double right = c;
+        double left = 1;
+        double result = 0;
+        while (Math.abs(c - result) > 0.0000001) {
+            double mid = (left + right) / 2;
+            result = (mid * mid + Math.sqrt(mid));
+            if (c <= result) {
+                right = mid;
+            } else {
+                left = mid;
             }
-            out.println();
         }
-
+        out.println(left);
     }
 
     private static class FastScanner {

@@ -10,48 +10,26 @@ import java.util.StringTokenizer;
 /**
  * Problem solution template.
  */
-public final class task4 {
+public final class task3969 {
 
 
     private static void solve(final FastScanner in, final PrintWriter out) {
-        String str1 = in.next();
-        String str2 = in.next();
-        if (str1.equals(str2)) {
-            out.println("YES");
-            return;
-        }
-        if (str1.length() == 0 && str2.length() == 0) {
-            out.println("YES");
-            return;
-        }
-        if (isTrue(str1, str2) || isTrue(str2, str1)) {
-            out.println("YES");
-            return;
-        }
-        out.println("NO");
-    }
-
-
-    static boolean isTrue(String str1, String str2) {
-        int n1 = str1.length();
-        int n2 = str2.length();
-        boolean[][] d = new boolean[n1 + 1][n2 + 1];
-        d[0][0] = true;
-
-        for (int i = 1; i <= n1; ++i) {
-            for (int j = 1; j <= n2; ++j) {
-                char nextstr1 = str2.charAt(j - 1);
-                char nextstr2 = str1.charAt(i - 1);
-                if (nextstr1 == nextstr2 || nextstr2 == '?') {
-                    d[i][j] = d[i - 1][j - 1];
-                } else {
-                    if (nextstr2 == '*') {
-                        d[i][j] = d[i - 1][j - 1] || d[i - 1][j] || d[i][j - 1];
-                    }
-                }
+        long w = in.nextInt();
+        long h = in.nextInt();
+        long n = in.nextInt();
+        long left = Math.max(h, w);
+        long right = Math.max(h, w) * n;
+        long count;
+        while (left < right) {
+            long ans = (left + right) / 2;
+            count = (ans / h) * (ans / w);
+            if (count >= n) {
+                right = ans;
+            } else {
+                left = ans + 1;
             }
         }
-        return d[str1.length()][str2.length()];
+        out.println(left);
     }
 
     private static class FastScanner {
@@ -76,7 +54,6 @@ public final class task4 {
         int nextInt() {
             return Integer.parseInt(next());
         }
-
     }
 
     public static void main(final String[] arg) {
@@ -86,4 +63,3 @@ public final class task4 {
         }
     }
 }
-

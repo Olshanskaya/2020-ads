@@ -6,31 +6,40 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
-import java.lang.Math.*;
 
 /**
  * Problem solution template.
  */
-public final class task3 {
-
+public final class task264 {
 
     private static void solve(final FastScanner in, final PrintWriter out) {
-        int w = in.nextInt();
-        int h = in.nextInt();
         int n = in.nextInt();
-        long left = Math.max(h, w);
-        long right = Math.max(h, w) * n;
-        long count;
-        while (left < right) {
-            long ans = (left + right) / 2;
-            count = (ans / h) * (ans / w);
-            if (count >= n) {
-                right = count;
-            } else {
-                left = count + 1;
+        int[] mas = new int[n];
+        int[] d = new int[n];
+        for (int i = 0; i < n; i++) {
+            mas[i] = in.nextInt();
+        }
+
+        for (int i = 0; i < n; i++) {
+            d[i] = 1;
+            for (int j = i - 1; j >= 0; j--) {
+                if (mas[j] != 0) {
+                    if ((mas[j] != 0) && mas[i] % mas[j] == 0 && d[j] + 1 > d[i]) {
+                        d[i] = d[j] + 1;
+                    }
+                }
+
             }
         }
-        out.println(left);
+        int max = d[0];
+        for (int i = 1; i < n; i++) {
+            if (d[i] > max) {
+                max = d[i];
+            }
+        }
+        out.println(max);
+
+
     }
 
     private static class FastScanner {

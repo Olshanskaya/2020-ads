@@ -10,35 +10,56 @@ import java.util.StringTokenizer;
 /**
  * Problem solution template.
  */
-public final class task2 {
+public final class task2169 {
+
+    private static boolean doNext(int[] mas, int n) {
+        int j = n - 2;
+        while (j != -1 && mas[j] >= mas[j + 1]) {
+            j--;
+        }
+        if (j == -1) {
+            return false;
+        }
+        int k = n - 1;
+        while (mas[j] >= mas[k]) {
+            k--;
+        }
+        int tmp = mas[j];
+        mas[j] = mas[k];
+        mas[k] = tmp;
+
+        int left = j + 1;
+        int right = n - 1;
+        while (left < right) {
+            tmp = mas[left];
+            mas[left] = mas[right];
+            mas[right] = tmp;
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 
 
     private static void solve(final FastScanner in, final PrintWriter out) {
         int n = in.nextInt();
         int[] mas = new int[n];
-        int[] d = new int[n];
         for (int i = 0; i < n; i++) {
-            mas[i] = in.nextInt();
+            mas[i] = i + 1;
         }
 
         for (int i = 0; i < n; i++) {
-            d[i] = 1;
-            for (int j = i; j >= 0; j--) {
-                if (mas[j] != 0) {
-                    if (mas[i] % mas[j] == 0 && d[j] + 1 > d[i]) {
-                        d[i] = d[j] + 1;
-                    }
-                }
-            }
+            out.print(mas[i] + " ");
         }
-        int max = d[0];
-        for (int i = 1; i < n; i++) {
-            if (d[i] > max) {
-                max = d[i];
-            }
-        }
-        out.println(max);
+        out.println();
 
+        while (doNext(mas, n)) {
+            for (int i = 0; i < n; i++) {
+                out.print(mas[i] + " ");
+            }
+            out.println();
+        }
 
     }
 

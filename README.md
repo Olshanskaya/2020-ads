@@ -14,7 +14,6 @@
 ## ДЗ 2.
 Задачи с e-olymp.com
 
-Дэдлайн - 13.10
   * https://www.e-olymp.com/ru/problems/3738 - Простая сортировка
   * https://www.e-olymp.com/ru/problems/1462 - Хитрая сортировка
   * https://www.e-olymp.com/ru/problems/4741 - Сортировка пузырьком
@@ -24,7 +23,6 @@
 ## ДЗ 3.
 Задачи с e-olymp.com
   
-Дэдлайн - 20.10
   * https://www.e-olymp.com/ru/problems/3737 - Куча ли?
   * https://www.e-olymp.com/ru/problems/4039 - Хипуй
   * https://www.e-olymp.com/ru/problems/4074 - Найти медиану 2  
@@ -33,7 +31,6 @@
 
 ## ДЗ 4.
 Задачи с e-olymp.com
-Дэдлайн - 27.10
   * https://www.e-olymp.com/ru/problems/1087 - Скобочная последовательность
   * https://www.e-olymp.com/ru/problems/15 - Мышки и зернышки
   * https://www.e-olymp.com/ru/problems/1618 - Наибольшая общая подпоследовательность
@@ -41,7 +38,6 @@
   * https://www.e-olymp.com/ru/problems/4261 - Количество инверсий
 
 ## ДЗ 5.
-Дэдлайн - 3.11
   * https://www.e-olymp.com/ru/problems/3968 - Квадратный корень
   * https://www.e-olymp.com/ru/problems/3969 - Дипломы
   * https://www.e-olymp.com/ru/problems/264 - Наибольшая последовательнократная подпоследовательность

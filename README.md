@@ -9,8 +9,6 @@
   * https://www.e-olymp.com/ru/problems/6124 - стек
   * https://www.e-olymp.com/ru/problems/6125 - очередь
 
-За каждое полностью рабочее решение дается 2 балла (да, даже за первую задачу).
-
 ## ДЗ 2.
 Задачи с e-olymp.com
 
